@@ -1,0 +1,435 @@
+ 
+        ______________________________________
+       |                                      |
+       |           ==================         |
+       |                 x T B                |
+       |           ==================         |
+       |               S. Grimme              |
+       |        Universitaet Bonn, MCTC       |
+       |         2015-18, Version 5.0         |
+       |      Sat Jan 20 11:00:33 CET 2018    |
+       |______________________________________|
+ 
+        This code comes without any warranty
+        for non-commercial, academia use only.
+        Cite GFN-xTB work as:
+        S. Grimme, C. Bannwarth, P. Shushkov
+        JCTC, 13 (2017) 1989-2009
+        for GFN2:
+        C. Bannwarth, S. Ehlert, S. Grimme
+        to be published.
+        sTDA-xTB:
+        S. Grimme  &  C. Bannwarth, JCP 145 (2016) 054103
+        in the mass-spec context additionally:
+        V. Asgeirsson, C.Bauer, S. Grimme, Chem. Sci. 8 (2017) 4879
+ 
+        with help from
+        P. Shushkov, G. Brandenburg, S. Dohm, J. Pisarek,
+        F. März, M. Checinski, S. Ehrlich, S. Spicher, 
+        P. Pracht, E. Caldeweyher, S. Ehlert, and C. Bannwarth.
+ 
+        usage        :
+        xtb <coord_file> [options]
+        where <coord_file> is a valid file of TM)
+        (*coord, Bohr) or xmol (*xyz, Angstroem)
+        format.
+
+        options:
+        -chrg <int>   : molecular charge
+        -uhf  <int>   : # of unpaired electrons(=2*S)
+        -nox          : skip second, extended part in sTDA-xTB
+        -pop          : do population analysis
+                      : (default for -nox)
+        -mowr <real>  : cut MO write above (def.3 Eh)
+        -molden       : write formatted molden file
+        -parx <file>  : read parameters for sTDA-xTB
+                        calc (def:~/.param_stda2.xtb)
+        -parv <file>  : read parameters for vTB part in
+                        sTDA-xTB (def: ~/.param_stda1.xtb)
+        -xtemp <real> : el. temp for xTB (def. 0 K)
+        -etemp <real> : el. temp for GFN (def. 300 K)
+        -fod          : do a xTB calc. of the FOD
+                        and write molden.input file 
+                        with appropriate occupations
+                        for plotting. Def. T=12500 K
+ 
+        -gfn          : use GFN-xTB
+        -grad         : GFN-xTB gradient
+        -acc <real>   : GFN-xTB accuracy (def. 1.0)
+        -opt [level]  : optimize at GFN-xTB
+                      : level=crude,vloose,loose,
+                      :       tight,vtight
+        -hess         : compute Hessian at GFN-xTB
+        -ohess        : optimize and compute Hessian
+        -omd          : optimize and do MD
+        -siman        : conformational search
+        -screen       : opt. loop over ensemble
+        -gmd          : annealed MD for GMD procedure
+        -modef        : vib mode following
+        -gbsa [string1] [string2]
+                        use GBSA implicit solvent
+                        for solvent [string1] and
+                        solvation state [string2]=
+                        reference, bar1M (default=1M)
+        additional GFN/opt/MD/siman options read from
+        $XTBHOME/.xtbrc or $set in coordinate file
+ 
+       spin and charge state information can be on:
+       <.CHRG> (charge) and <.UHF> (=nalpha-nbeta)
+       -uhf and -chrg override the file info.
+       useful machine settings:
+       setenv MKL_NUM_THREADS <NCORE_ON_YOUR_MACHINE>
+       setenv OMP_STACKSIZE 500m
+       limit stacksize unlimited
+ 
+       total energies in Eh, gaps/HL energies in eV
+       please read REVISION and HOWTO files carefully
+ =============================
+  # OMP threads =                     1
+ =============================
+ 
+ xtbhome directory:/Applications/xtb/
+ 
+ argument                      1 :-gmd
+ argument                      2 :restart
+ 
+ number of atoms            :    37
+ number of electrons        :   126
+ charge                     :  0
+ spin                       : 0.0
+ first test random number   :  0.3020
+ 
+ 
+KAB for pair M(3d)-M(3d) :  1.1000
+KAB for pair M(4d)-M(4d) :  1.2000
+KAB for pair M(5d)-M(5d) :  1.2000
+ -----------------------------------------
+  G F N (Geometry, Frequency, Non-covalent)
+        parametrization, version                     2
+ /Applications/xtb/.param_gfn2.xtb
+ -----------------------------------------
+      method parameters     
+ k(s)        :  1.8500
+ k(p)        :  2.2500
+ k(d)        :  2.0000
+ k(f)        :  0.0000
+ alphaj      :  1.0000
+ kEN (H0ij)  : -2.3620
+ D3 a1       :  0.6900
+ D3 a2       :  4.0530
+ D3 s8       :  2.0000
+ D3atm       :  1.0000
+ AESdamp     :  5.5000
+ AESrad      :  1.9230
+ expscalexp  : -0.2500
+ 
+     -------------------------
+     ! NO SOLVENT MODEL USED !
+     -------------------------
+ 
+ doing EN charges ...
+ sum q : -0.4440892D-15
+ point charge moment (au)
+     X       Y       Z   
+   0.0000   0.0000  -0.0000  total (Debye):    0.000
+ 
+            Z      q(EN)   CN      Cart. coordinates
+     1  C   4.0    0.22    4.35     2.38162    -2.99518     0.00000
+     2  C   4.0    0.22    4.35    -2.38162     2.99518     0.00000
+     3  C   4.0    0.22    4.35    -0.59202    -3.78038     0.00000
+     4  C   4.0    0.22    4.35     0.59202     3.78038     0.00000
+     5  N   5.0   -0.19    3.19    -1.51302    -2.80932    -2.39296
+     6  N   5.0   -0.19    3.19     1.51302     2.80931     2.39296
+     7  N   5.0   -0.19    3.19    -1.51302    -2.80931     2.39296
+     8  N   5.0   -0.19    3.19     1.51302     2.80932    -2.39296
+     9  N   5.0   -0.19    3.19     2.70341    -1.69613    -2.39301
+    10  N   5.0   -0.19    3.19    -2.70341     1.69613     2.39301
+    11  N   5.0   -0.19    3.19     2.70341    -1.69613     2.39301
+    12  N   5.0   -0.19    3.19    -2.70341     1.69613    -2.39301
+    13  C   4.0    0.48    3.40     0.63386    -2.39973    -3.93943
+    14  C   4.0    0.48    3.40    -0.63386     2.39972     3.93943
+    15  C   4.0    0.48    3.40     0.63386    -2.39972     3.93943
+    16  C   4.0    0.48    3.40    -0.63386     2.39973    -3.93943
+    17  O   6.0   -0.38    1.06     0.66289    -2.50949    -6.18457
+    18  O   6.0   -0.38    1.06    -0.66289     2.50949     6.18457
+    19  O   6.0   -0.38    1.06     0.66289    -2.50949     6.18457
+    20  O   6.0   -0.38    1.06    -0.66289     2.50949    -6.18457
+    21  C   4.0    0.25    4.18    -3.49109    -0.92209    -2.87116
+    22  C   4.0    0.25    4.18     3.49109     0.92209     2.87116
+    23  C   4.0    0.25    4.18    -3.49109    -0.92209     2.87116
+    24  C   4.0    0.25    4.18     3.49109     0.92209    -2.87116
+    25  H   1.0   -0.06    1.00    -0.79188    -5.84135     0.00000
+    26  H   1.0   -0.06    1.00     0.79188     5.84135     0.00000
+    27  H   1.0   -0.06    1.00     3.57281    -4.68887     0.00000
+    28  H   1.0   -0.06    1.00    -3.57282     4.68887     0.00000
+    29  H   1.0   -0.06    1.00    -5.21737    -1.37808    -1.85905
+    30  H   1.0   -0.06    1.00     5.21737     1.37808     1.85905
+    31  H   1.0   -0.06    1.00    -5.21737    -1.37808     1.85905
+    32  H   1.0   -0.06    1.00     5.21737     1.37808    -1.85905
+    33  H   1.0   -0.05    1.01    -3.84915    -1.01658    -4.90597
+    34  H   1.0   -0.05    1.01     3.84915     1.01657     4.90597
+    35  H   1.0   -0.05    1.01    -3.84915    -1.01657     4.90597
+    36  H   1.0   -0.05    1.01     3.84915     1.01658    -4.90597
+    37  HE  2.0   -0.08    0.30     0.00001     0.00000    -0.00005
+ 
+  Z AO/shell   Hii/eV     exponent
+  1     Sat Jan 20 17:55:17 CET 2018    EN: 2.200 GAM: 0.531  GM3:-0.4370
+     1s    -10.248275    1.266496
+  2     Sun Jan 21 00:02:32 CET 2018    EN: 3.000 GAM: 0.420  GM3:-0.3880
+     1s    -20.299815    1.657029
+     2p      1.788682    1.820207
+  6     Sat Jan 20 17:55:17 CET 2018    EN: 2.550 GAM: 0.417  GM3:-0.0654
+     2s    -15.292509    2.030071
+     2p    -10.408465    1.801676
+  7     Sat Jan 20 17:55:17 CET 2018    EN: 3.040 GAM: 0.444  GM3:-0.1301
+     2s    -16.687725    2.226550
+     2p    -13.175143    1.981921
+  8     Sat Jan 20 17:55:17 CET 2018    EN: 3.440 GAM: 0.468  GM3: 0.0937
+     2s    -20.924998    2.442614
+     2p    -15.243501    2.233841
+ no old-style atom pair restraing (fixing) potential
+ 
+ molecular fragmentation (1/2 indicates fragments):
+1111111111111111111111111111111111112
+# atoms in fragment 1/2:    36     1
+ fragment masses (1/2) :      332.28        4.00
+CMA distance (Bohr)    :   0.000
+constraining FC (au)   :  0.0500
+ 
+             =======================================
+             |                                     |
+             |        S C C  calculation           |
+             |                                     |
+             =======================================
+ #proc     :                      1
+ Ncao      :                    112
+ Nao       :                    112
+ Nel       :                    126
+ T(el)     :   300.0
+ intcut    :    25.0
+ scfconv   :  0.100E-05
+   qconv   :  0.200E-04
+ intneglect:  0.100E-07
+ broydamp  :      0.400
+ Nshell    :                     62
+  q data taken from xtbrestart
+  CAMM data taken from xtbrestart
+ iter      E             dE          RMSdq      gap      omega  full diag
+   1    -75.4942789 -0.754943E+02  0.139E-09    3.48       0.0  T
+   2    -75.4942789  0.142109E-12  0.846E-10    3.48  100000.0  T
+   3    -75.4942789 -0.710543E-13  0.542E-10    3.48  100000.0  T
+speedup  1.17
+cpu  time for SCC    0.07 s
+wall time for SCC    0.06 s
+
+          eigenvalues
+ #    :          51         52         53         54         55         56         57         58
+ occ. :        2.000      2.000      2.000      2.000      2.000      2.000      2.000      2.000
+ eps  :       -13.306    -11.908    -11.751    -11.609    -11.460    -11.416    -11.392    -11.281
+ #    :          59         60         61         62         63         64         65         66
+ occ. :        2.000      2.000      2.000      2.000      2.000      0.000      0.000      0.000
+ eps  :       -11.064    -10.973    -10.920    -10.903    -10.670     -7.190     -7.166     -5.946
+ #    :          67         68         69         70         71         72         73         74
+ occ. :        0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000
+ eps  :        -5.875     -1.981     -1.555     -1.510     -1.440     -1.079     -1.069     -0.547
+ 
+ 
+ Mulliken/CM5 charges        n(s)   n(p)   n(d)
+     1 C   0.03494  0.12117   1.108  2.857  0.000
+     2 C   0.03494  0.12117   1.108  2.857  0.000
+     3 C   0.03492  0.12115   1.108  2.857  0.000
+     4 C   0.03492  0.12115   1.108  2.857  0.000
+     5 N  -0.09835 -0.32170   1.204  3.894  0.000
+     6 N  -0.09835 -0.32170   1.204  3.894  0.000
+     7 N  -0.09835 -0.32170   1.204  3.894  0.000
+     8 N  -0.09835 -0.32170   1.204  3.894  0.000
+     9 N  -0.09845 -0.32178   1.204  3.894  0.000
+    10 N  -0.09845 -0.32178   1.204  3.894  0.000
+    11 N  -0.09845 -0.32178   1.204  3.894  0.000
+    12 N  -0.09845 -0.32178   1.204  3.894  0.000
+    13 C   0.25219  0.41831   1.068  2.679  0.000
+    14 C   0.25219  0.41831   1.068  2.679  0.000
+    15 C   0.25219  0.41831   1.068  2.679  0.000
+    16 C   0.25219  0.41831   1.068  2.679  0.000
+    17 O  -0.34182 -0.38155   1.730  4.612  0.000
+    18 O  -0.34182 -0.38155   1.730  4.612  0.000
+    19 O  -0.34182 -0.38155   1.730  4.612  0.000
+    20 O  -0.34182 -0.38155   1.730  4.612  0.000
+    21 C   0.03248  0.05258   1.085  2.883  0.000
+    22 C   0.03248  0.05258   1.085  2.883  0.000
+    23 C   0.03248  0.05258   1.085  2.883  0.000
+    24 C   0.03247  0.05258   1.085  2.883  0.000
+    25 H   0.05045  0.13060   0.950  0.000  0.000
+    26 H   0.05045  0.13060   0.950  0.000  0.000
+    27 H   0.05046  0.13061   0.950  0.000  0.000
+    28 H   0.05046  0.13061   0.950  0.000  0.000
+    29 H   0.06199  0.13928   0.938  0.000  0.000
+    30 H   0.06199  0.13928   0.938  0.000  0.000
+    31 H   0.06199  0.13928   0.938  0.000  0.000
+    32 H   0.06199  0.13928   0.938  0.000  0.000
+    33 H   0.08017  0.16512   0.920  0.000  0.000
+    34 H   0.08017  0.16512   0.920  0.000  0.000
+    35 H   0.08017  0.16512   0.920  0.000  0.000
+    36 H   0.08017  0.16512   0.920  0.000  0.000
+    37 HE  0.10562 -0.00809   1.990 -0.096  0.000
+ 
+ Wiberg/Mayer (AO) data. WBOs > 0.1 written file <wbo>
+ largest (>0.05) Wiberg bond orders for each atom
+           total WBO             WBO to atom ...
+     1  C   3.965    N    9 1.009    N   11 1.009    H   27 0.953    C    3 0.899
+     2  C   3.965    N   12 1.009    N   10 1.009    H   28 0.953    C    4 0.899
+     3  C   3.965    N    5 1.009    N    7 1.009    H   25 0.953    C    1 0.899
+     4  C   3.965    N    8 1.009    N    6 1.009    H   26 0.953    C    2 0.899
+     5  N   3.306    C   13 1.036    C    3 1.009    C   21 0.979    O   17 0.125
+     6  N   3.306    C   14 1.036    C    4 1.009    C   22 0.979    O   18 0.125
+     7  N   3.306    C   15 1.036    C    3 1.009    C   23 0.979    O   19 0.125
+     8  N   3.306    C   16 1.036    C    4 1.009    C   24 0.979    O   20 0.125
+     9  N   3.306    C   13 1.036    C    1 1.009    C   24 0.979    O   17 0.124
+    10  N   3.306    C   14 1.036    C    2 1.009    C   23 0.979    O   18 0.124
+    11  N   3.306    C   15 1.036    C    1 1.009    C   22 0.979    O   19 0.124
+    12  N   3.306    C   16 1.036    C    2 1.009    C   21 0.979    O   20 0.124
+    13  C   3.952    O   17 1.799    N    5 1.036    N    9 1.036
+    14  C   3.952    O   18 1.799    N    6 1.036    N   10 1.036
+    15  C   3.952    O   19 1.799    N    7 1.036    N   11 1.036
+    16  C   3.952    O   20 1.799    N    8 1.036    N   12 1.036
+    17  O   2.122    C   13 1.799    N    5 0.125    N    9 0.124
+    18  O   2.122    C   14 1.799    N    6 0.125    N   10 0.124
+    19  O   2.122    C   15 1.799    N    7 0.125    N   11 0.124
+    20  O   2.122    C   16 1.799    N    8 0.125    N   12 0.124
+    21  C   3.960    N    5 0.979    N   12 0.979    H   29 0.960    H   33 0.959
+    22  C   3.960    N    6 0.979    N   11 0.979    H   30 0.960    H   34 0.959
+    23  C   3.960    N    7 0.979    N   10 0.979    H   31 0.960    H   35 0.959
+    24  C   3.960    N    8 0.979    N    9 0.979    H   32 0.960    H   36 0.959
+    25  H   0.997    C    3 0.953
+    26  H   0.997    C    4 0.953
+    27  H   0.997    C    1 0.953
+    28  H   0.997    C    2 0.953
+    29  H   0.996    C   21 0.960
+    30  H   0.996    C   22 0.960
+    31  H   0.996    C   23 0.960
+    32  H   0.996    C   24 0.960
+    33  H   0.993    C   21 0.959
+    34  H   0.993    C   22 0.959
+    35  H   0.993    C   23 0.959
+    36  H   0.993    C   24 0.959
+    37  HE -0.176
+ 
+molecular dipole:
+                 x           y           z       tot (Debye)
+ q only:       -0.000      -0.000       0.000
+   full:       -0.000      -0.000       0.000       0.000
+molecular quadrupole (traceless):
+                xx          xy          yy          xz          yz          zz
+ q only:       26.053       4.145      11.471      -0.000       0.000     -37.525
+  q+dip:       30.112       4.299      15.009       0.000      -0.000     -45.121
+   full:       29.088       3.322      17.430       0.000      -0.000     -46.518
+ SCC converged in                      3  cycles
+ 
+SCC energy    :     -75.4942789
+rep           :       0.6971297
+ES            :       0.0243620
+AES           :       0.0327076
+disp          :      -0.0507168
+XB            :       0.0000000
+fix           :       0.0000000
+total E       :     -74.8478660
+atomizationE  :       9.6213205     6037.47
+(atE without considerung molecular charge,
+ total energy contains solvation terms)
+H-L gap (eV)  :          3.4803
+ 
+       ===================================
+       |          GMD driver             |
+       ===================================
+ 
+ 
+ MD time /ps        :   50.00
+ dt /fs             :    4.00
+ SCC accuracy       :    1.00
+ temperature /K     :  298.15
+ max steps          : 12500
+ block length (av.) :   875
+ dumpstep(trj) /fs  :   50.00    12
+ dumpstep(coords)/fs: 1000.00   250
+ minimum runtime(ps):   5.0
+ maximum runtime(ps):  50.0
+ H atoms mass (amu) :     4
+ # deg. of freedom  :    69
+ SHAKE on. # bonds  :                    42  all: T
+ Berendsen THERMOSTAT on
+ EQUILIBRATION mode
+         time (ps)    <Epot>      Ekin   <T>   T     Etot
+  q data taken from xtbrestart
+  CAMM data taken from xtbrestart
+      0    0.00      0.00000   0.0193    0.    0.   -74.82859
+est. speed in wall clock h for 100 ps :  0.67
+    200    0.80    -74.46618   0.0109   82.  100.   -74.82824
+    400    1.60    -74.65146   0.0096   86.   88.   -74.82877
+    600    2.40    -74.71342   0.0088   87.   81.   -74.82923
+    800    3.20    -74.74444   0.0084   88.   77.   -74.82777
+block <Epot> / <T> :     -74.83785   88.     drift:  0.99D+02   Tbath : 134.
+   1000    4.00    -74.76267   0.0141   92.  129.   -74.81860
+   1200    4.80    -74.77432   0.0118   98.  108.   -74.81830
+   1400    5.60    -74.78264   0.0115  103.  106.   -74.82145
+   1600    6.40    -74.78889   0.0158  107.  144.   -74.81635
+block <Epot> / <T> :     -74.83290  132.     drift:  0.99D+02   Tbath : 201.
+   1800    7.20    -74.79368   0.0202  111.  185.   -74.80762
+   2000    8.00    -74.79688   0.0220  119.  201.   -74.80322
+   2200    8.80    -74.79943   0.0178  127.  163.   -74.80811
+   2400    9.60    -74.80156   0.0246  133.  225.   -74.79950
+   2600   10.40    -74.80336   0.0213  138.  195.   -74.79848
+block <Epot> / <T> :     -74.82540  197.     drift:  0.99D+02   Tbath : 298.
+   2800   11.20    -74.80442   0.0353  147.  323.   -74.78172
+   3000   12.00    -74.80508   0.0334  157.  306.   -74.77861
+   3200   12.80    -74.80563   0.0340  166.  311.   -74.78112
+   3400   13.60    -74.80612   0.0347  174.  318.   -74.78203
+block <Epot> / <T> :     -74.81467  293.     drift:  0.77D-02   Tbath : 298.
+   3600   14.40    -74.80656   0.0282  181.  258.   -74.78084
+   3800   15.20    -74.80696   0.0288  187.  263.   -74.78362
+   4000   16.00    -74.80732   0.0278  192.  255.   -74.78309
+   4200   16.80    -74.80765   0.0354  197.  324.   -74.78054
+block <Epot> / <T> :     -74.81423  298.     drift:  0.67D-02   Tbath : 298.
+   4400   17.60    -74.80796   0.0269  202.  246.   -74.78449
+   4600   18.40    -74.80824   0.0244  206.  224.   -74.78065
+   4800   19.20    -74.80848   0.0382  210.  349.   -74.78020
+   5000   20.00    -74.80872   0.0336  213.  308.   -74.77527
+   5200   20.80    -74.80892   0.0246  217.  225.   -74.78007
+block <Epot> / <T> :     -74.81425  298.     drift:  0.34D-02   Tbath : 298.
+   5400   21.60    -74.80911   0.0274  220.  251.   -74.78448
+   5600   22.40    -74.80930   0.0338  223.  310.   -74.78046
+   5800   23.20    -74.80947   0.0314  225.  287.   -74.77958
+   6000   24.00    -74.80962   0.0277  228.  254.   -74.77964
+block <Epot> / <T> :     -74.81413  298.     drift:  0.16D-03   Tbath : 298.
+ GOOD AVERAGES REACHED
+ average properties 
+ Epot               :  -74.8219156337445     
+ Epot (accurate SCC):  -74.8218273424761     
+ Ekin               :  2.503185343219994E-002
+ Etot               :  -74.7968837803123     
+ T                  :   229.113762360647     
+ normal exit of md()
+ 
+ MD time /ps        :   50.00
+ dt /fs             :    4.00
+ SCC accuracy       :    1.00
+ temperature /K     :  298.15
+ max steps          : 50000
+ block length (av.) :   875
+ dumpstep(trj) /fs  :   50.00    12
+ dumpstep(coords)/fs: 1000.00   250
+ minimum runtime(ps):  50.0
+ maximum runtime(ps): 200.0
+ H atoms mass (amu) :     4
+ # deg. of freedom  :    69
+ SHAKE on. # bonds  :                    42  all: T
+ Berendsen THERMOSTAT on
+ GMD mode
+ RESTART
+         time (ps)    <Epot>      Ekin   <T>   T     Etot
+  q data taken from xtbrestart
+  CAMM data taken from xtbrestart
+ reading input structure for Re-R0 averaging
+      0    0.00      0.00000   0.0278    0.    0.   -74.77992
+est. speed in wall clock h for 100 ps :  0.74
+    200    0.80    -74.44190   0.0274  296.  251.   -74.78028
+                    27   25.1137286181366        12.8712990881779     
