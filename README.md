@@ -1,4 +1,4 @@
-Some DFT calculations of cucurbit[3]uril using Alex Granovsky's Firefly QC package v8.1 and 8.2 and Stefan Grimme's extended tight-binding semi-empirical program package xTB
+Some DFT calculations of cucurbit[2]uril using Alex Granovsky's Firefly QC package v8.1 and 8.2 and Stefan Grimme's extended tight-binding semi-empirical program package xTB
 
 Calculations were performed on a dual 6-core Mac Pro (mid 2010) with 32GB RAM and 512GB SSD
 
